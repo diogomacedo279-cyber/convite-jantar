@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Convite Especial</title>
+  <style>
+    :root{
+      --bg1:#0b0b0e;
+      --bg2:#15151c;
+      --card: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.12);
+      --text: #f3f3f3;
+      --muted: rgba(255,255,255,.75);
+      --accent: #f1c40f;
+      --accent2: #7bed9f;
+      --danger: #ff6b81;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: radial-gradient(1200px 600px at 20% 20%, #1e1e2a 0%, transparent 55%),
+                  radial-gradient(900px 500px at 80% 70%, #1a2a20 0%, transparent 55%),
+                  linear-gradient(120deg,var(--bg1),var(--bg2));
+      color:var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      padding:18px;
+    }
+    .wrap{
+      width:min(520px, 100%);
+    }
+    .card{
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:28px 22px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      backdrop-filter: blur(10px);
+      animation: fadeIn .8s ease;
+    }
+    @keyframes fadeIn{from{opacity:0; transform: translateY(10px)} to{opacity:1; transform: translateY(0)}}
+
+    .badge{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:14px;
+    }
+    h1{
+      margin:0 0 6px 0;
+      font-size:24px;
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.35;
+    }
+    .stage{
+      margin-top:16px;
+      padding-top:16px;
+      border-top:1px dashed rgba(255,255,255,.14);
+      display:none;
+      animation: pop .45s ease;
+    }
+    @keyframes pop{from{opacity:0; transform: scale(.98)} to{opacity:1; transform: scale(1)}}
+
+    .q{
+      font-size:18px;
+      margin:12px 0 14px;
+    }
+    .btns{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    button{
+      appearance:none;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.07);
+      color:var(--text);
+      padding:12px 16px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:15px;
+      transition:.2s;
+      min-width:130px;
+    }
+    button:hover{transform: translateY(-1px); background: rgba(255,255,255,.10)}
+    .primary{
+      background: var(--accent);
+      border-color: rgba(0,0,0,.2);
+      color:#111;
+      font-weight:700;
+    }
+    .primary:hover{filter: brightness(1.05)}
+    .ok{
+      background: rgba(123,237,159,.15);
+      border-color: rgba(123,237,159,.35);
+    }
+
+    .menu{
+      text-align:left;
+      margin:10px auto 0;
+      width:min(420px, 100%);
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.55;
+    }
+    .menu b{color:var(--text)}
+    .note{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .footer{
+      margin-top:16px;
+      text-align:center;
+      font-size:13px;
+      color:rgba(255,255,255,.65);
+    }
+    .tiny{
+      display:inline-block;
+      margin-top:8px;
+      font-size:12px;
+      opacity:.75;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="badge">🍋🍷 Operação Jantar Perigoso</div>
+      <h1>Convite oficial (quase sério)</h1>
+      <p class="sub">Conteúdo: charme, risadas e uma escolha muito difícil entre <b>Sim</b> e <b>Sim</b>.</p>
+
+      <!-- STAGE 1 -->
+      <div id="s1" class="stage" style="display:block">
+        <div class="q">Quer sair comigo?</div>
+        <div class="btns">
+          <button class="primary" onclick="go(2,'Ela escolheu: SIM ✅ (óbvio)')">Sim</button>
+          <button class="primary" onclick="go(2,'Ela escolheu: SIM ✅ (com convicção)')">Sim</button>
+        </div>
+        <div class="tiny">*Opções alternativas foram removidas por motivos de segurança.</div>
+      </div>
+
+      <!-- STAGE 2 -->
+      <div id="s2" class="stage">
+        <div class="q">Perfeito. Agora escolha o nível de risco:</div>
+        <div class="btns">
+          <button class="ok" onclick="go(3,'Nível de risco selecionado: “Eu mereço uma noite boa.” 😌')">Risco elegante</button>
+          <button class="ok" onclick="go(3,'Nível de risco selecionado: “Vou me envolver e fod*-se.” 😏')">Risco gostoso</button>
+        </div>
+        <p class="note" id="log"></p>
+      </div>
+
+      <!-- STAGE 3 -->
+      <div id="s3" class="stage">
+        <div class="q">Segunda-feira, dia <b>05</b>, às <b>20h</b>.</div>
+        <p class="sub" style="margin-bottom:6px">O cardápio foi montado com extrema responsabilidade emocional:</p>
+
+        <div class="menu">
+          🍋 <b>Risoto de limão</b> com <b>presunto parma</b><br>
+          🍷 <b>Vinho</b> (quantidade estratégica, sem promessas irreais)<br>
+          🍰 <b>Torta de bolacha</b> (porque maturidade é opcional)<br>
+        </div>
+
+        <div class="btns" style="margin-top:14px">
+          <button class="primary" onclick="go(4,'Status: presença praticamente confirmada 😌')">Continuar</button>
+        </div>
+      </div>
+
+      <!-- STAGE 4 -->
+      <div id="s4" class="stage">
+        <div class="q">Última pergunta (importante):</div>
+        <p class="sub">Você prefere:</p>
+        <div class="btns">
+          <button onclick="finish('Opção escolhida: chegar linda (padrão). ✅')">Chegar linda</button>
+          <button onclick="finish('Opção escolhida: chegar linda também. ✅')">Chegar linda também</button>
+        </div>
+
+        <p class="note" id="finalNote"></p>
+
+        <div class="footer">
+          ⚠️ Efeitos colaterais possíveis: risadas, química, vontade de repetir o evento.<br>
+          <span class="tiny">PS: se você topar, eu prometo caprichar no risoto… e na companhia.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  function show(id){
+    document.getElementById('s1').style.display = 'none';
+    document.getElementById('s2').style.display = 'none';
+    document.getElementById('s3').style.display = 'none';
+    document.getElementById('s4').style.display = 'none';
+    document.getElementById('s'+id).style.display = 'block';
+  }
+
+  function go(nextStage, msg){
+    const log = document.getElementById('log');
+    if (log) log.textContent = msg;
+    show(nextStage);
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function finish(msg){
+    document.getElementById('finalNote').textContent = msg + " Agora é só responder com um “fechado” 😉";
+  }
+</script>
+</body>
+</html>
